@@ -1,21 +1,32 @@
 package ToDo;
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.*;
+import java.sql.Timestamp;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.text.SimpleDateFormat;
-
+@Getter
+@Setter
 @Entity
-public class MainModel{
+public class MainModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column(name="title",nullable = false)
     private String title;
-    private SimpleDateFormat createdAt;
-    private SimpleDateFormat updateAt;
 
+    @Column(name="expiration",nullable = false)
+    private Timestamp expiration;
 
+    @Column(name="done",nullable=false)
+    private Boolean done;
+
+    @Column(name="CreatedAt",nullable = false)
+    private Timestamp createdAt;
+
+    @Column(name="updateAt",nullable = false)
+    private Timestamp updateAt;
 
 }

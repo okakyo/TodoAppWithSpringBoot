@@ -1,6 +1,7 @@
 <template lang="pug">
     .about
-
+        SearchCard
+        TODOCard
 </template>
 <script>
     import TODOCard from "../components/todocard";

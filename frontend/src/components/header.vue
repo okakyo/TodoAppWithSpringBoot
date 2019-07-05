@@ -1,12 +1,12 @@
 <template lang="pug">
-    v-toolbar(app)
+    v-toolbar(app color="indigo")
+        v-toolbar-title
+           router-link.headers-router(to="/")
+               h2.white--text.mr-2 TODOリスト
 
-      v-toolbar-title.headline.text-uppercase
-        span Todoリスト
-
-      v-spacer
-      v-btn(flat href="https://github.com/vuetifyjs/vuetify/releases/latest" target="_blank")
-        span(class="mr-2") 検索
+        v-spacer
+        router-link.headers-router(to="/search")
+            h2.white--text.mr-2 検索
 
 </template>
 
@@ -18,5 +18,9 @@
 </script>
 
 <style scoped>
+   .headers-router {
+       text-decoration: none;
+   }
+
 
 </style>

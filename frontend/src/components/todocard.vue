@@ -7,12 +7,11 @@
             v-layout(row,justify-center,full-height,align-center)
                 v-flex(xs2)
                 v-flex(xs6)
-                    v-card-title タスク名:
-                        span
-                    v-card-text 期限:
-                        span
-                    v-card-text 作成日:
-                        span
+                    v-card-title
+                        h2 タスク:
+                    v-card-text
+                        p 期限　：
+                        p 作成日：
                 v-flex(xs4)
                     v-btn(color="success")
                         b 編集
@@ -23,9 +22,11 @@
             v-layout(row,justify-center,full-height,align-center)
                 v-flex(xs2)
                 v-flex(xs6)
-                    v-card-title タスク名
-                    v-card-text 期限
-                    v-card-text 作成日
+                    v-card-title
+                        h2 タスク:
+                    v-card-text
+                        p 期限　：
+                        p 作成日：
                 v-flex(xs4)
                     v-btn(color="success")
                         b 編集

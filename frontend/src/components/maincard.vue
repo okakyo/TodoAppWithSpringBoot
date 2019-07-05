@@ -1,10 +1,12 @@
 <template lang="pug">
     v-card
         v-card-title
-            h3 新しくカードを作成する
+            h2 新しくカードを作成する
+        v-divider
         v-card-text
             v-layout(row,justify-center,full-height,align-center)
-                v-flex(xs8)
+                v-flex(xs2)
+                v-flex(xs6)
                     v-form
                         v-text-field(v-model="title",
                             :rules="nameRules",:counter="30",
@@ -24,7 +26,7 @@
                             min-width="290px")
                             template(v-slot:activator="{ on }")
                                 v-text-field( v-model="date"
-                                    label="Picker in menu"
+                                    label="期限"
                                     prepend-icon="event"
                                     readonly
                                     v-on="on")
@@ -34,7 +36,7 @@
                                 v-btn(flat color="primary" @click="$refs.menu.save(date)") OK
                 v-flex(xs1)
                 v-flex(xs3)
-                    v-btn(color="warning")
+                    v-btn(color="warning" type="submit")
                         span 提出
 </template>
 
@@ -43,6 +45,7 @@
         name: "MainCard",
         data: () => ({
             date: new Date().toISOString().substr(0, 10),
+
             valid: false,
             name: '',
             nameRules: [

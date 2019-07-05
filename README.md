@@ -12,9 +12,9 @@
     - データベース：
         - id: Int型
         - title: String型 (max-length=50)
+        - done: Boolean型 (default=false)
         - createdAt: Date型
         - updatedAt: Date型
 - ##　問題点：
     - できたこと:
-    - 
     

@@ -1,42 +1,48 @@
 package ToDo;
 import java.util.List;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import ToDo.MainModel;
+import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+import ToDo.MainModel;
+import ToDo.MainService;
 
 @RestController
 @RequestMapping("/api")
 public class MainController {
-    @RequestMapping(method=RequestMethod.GET)
-    @ResponseBody
-    public String getAllMemo() {
-        return "index\n";
-    }
-    @RequestMapping(value="{id}",method=RequestMethod.GET)
-    @ResponseBody
-    public String getMemo(@PathVariable int id) {
-        return "Hello Spring MVC"+id+"\n";
+
+    @Autowired
+    MainService mainService;
+
+    @GetMapping()
+    public List<MainModel> getAllMemo() {
+        List<MainModel> getAll=mainService.findAll();
+        return getAll;
     }
 
-    @RequestMapping(method=RequestMethod.POST)
+
+    @GetMapping(path="{id}")
     @ResponseBody
-    public String InsertMemo(){
-        return "Good Morning\n";
+    public Optional<MainModel> getMemo(@PathVariable int id) {
+        return mainService.find(id);
     }
 
-    @RequestMapping(method=RequestMethod.PUT)
-    @ResponseBody
-    public String PutMemo(){
-        return "Good Night\n";
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+
+    public MainModel postMemo(@RequestBody MainModel main){
+        return mainService.create(main);
     }
-    @RequestMapping(method=RequestMethod.DELETE)
-    @ResponseBody
-    public String DeleteMemo(){
-        return "Good Bye\n";
+    @PutMapping(path="{id}")
+    public MainModel PutMemo(@PathVariable Integer id,@RequestBody MainModel mainModel){
+
+        return mainService.update(mainModel);
+    }
+    @DeleteMapping(path = "{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void DeleteMemo(@PathVariable Integer id){
+        mainService.delete(id);
     }
 
 }

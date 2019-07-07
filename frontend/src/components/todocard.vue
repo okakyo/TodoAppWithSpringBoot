@@ -9,20 +9,24 @@
             div(v-for="item in cards")
                 v-layout(row,justify-center,full-height,align-center)
                     v-flex(xs2)
-                    v-flex(xs6)
+                    v-flex(xs7)
                         v-card-title
                             h3 タスク:
-                                span  {{ item.taskTitle}}
+                                span  {{item.taskTitle}}
                         v-card-text
                             p 期限　：
                                 span {{item.expiration}}
                             span 作成日：
                                 span {{item.creation}}
-                    v-flex(xs4)
+                    v-flex(xs3)
                         v-btn(color="success")
                             b 編集
-                        v-btn(color="error")
-                            b 未完了
+                        div(v-if="item.done" @click="checkDone(item.done)")
+                            v-btn
+                                b 完了
+                        div(v-else)
+                            v-btn(color="error" @click="checkDone(item.done)")
+                                b 未完了
                 v-divider
 
 
@@ -31,7 +35,7 @@
 
 
 <script lang="ts">
-    function setDatetime(date){
+    function setDatetime(date:any){
         return date.getFullYear()+"年"+date.getMonth()+"月"+1+date.getDay()+"日"
     }
 
@@ -57,8 +61,10 @@
                 ]
             }
         },
-        methods(){
-            return
+        methods:{
+            checkDone:function (done:boolean) {
+                done=!done
+            }
         }
 
 

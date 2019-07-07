@@ -19,9 +19,10 @@ public class MainService {
     public List<MainModel>findAll(){
         return mainRepository.findAll();
     }
-    public Optional<MainModel> find(Integer id){
+    public Optional<MainModel> findById(Integer id){
         return mainRepository.findById(id);
     }
+    public void find(MainModel main) { return ;}
 
     public MainModel create(MainModel main){
         return mainRepository.save(main);

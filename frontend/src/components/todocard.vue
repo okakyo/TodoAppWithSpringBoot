@@ -21,11 +21,11 @@
                     v-flex(xs3)
                         v-btn(color="success")
                             b 編集
-                        div(v-if="item.done" @click="checkDone(item.done)")
+                        div(v-if="item.done" @click="checkDone(item)")
                             v-btn
                                 b 完了
                         div(v-else)
-                            v-btn(color="error" @click="checkDone(item.done)")
+                            v-btn(color="error" @click="checkDone(item)")
                                 b 未完了
                 v-divider
 
@@ -62,8 +62,9 @@
             }
         },
         methods:{
-            checkDone:function (done:boolean) {
-                done=!done
+            checkDone:function (item) {
+                item.done=!item.done;
+
             }
         }
 

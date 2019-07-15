@@ -25,18 +25,20 @@ public class MainController {
     @GetMapping(path="{id}")
     @ResponseBody
     public Optional<MainModel> getMemo(@PathVariable int id) {
-        return mainService.find(id);
+        return mainService.findById(id);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
 
-    public MainModel postMemo(@RequestBody MainModel main){
+    public MainModel postMemo(@RequestBody MainModel main) {
         return mainService.create(main);
     }
+
+
     @PutMapping(path="{id}")
     public MainModel PutMemo(@PathVariable Integer id,@RequestBody MainModel mainModel){
-
+        mainModel.setId(id);
         return mainService.update(mainModel);
     }
     @DeleteMapping(path = "{id}")

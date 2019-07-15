@@ -10,7 +10,6 @@ interface State {
   expiration: Date,
   createdAt: Date,
   done: boolean
-
 }
 
 export default new Vuex.Store({

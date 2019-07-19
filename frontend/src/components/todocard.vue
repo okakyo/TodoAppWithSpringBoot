@@ -3,21 +3,21 @@
         v-card-title
             h2 タスク一覧
         v-divider
-        div(v-if="cards.length==0")
+        div(v-if="tasks.length==0")
             h3(style="text-align:center;padding:20px;") カードが存在しません。
         div(v-else)
-            div(v-for="item in cards")
+            div(v-for="item in tasks", v-bind="item.id")
                 v-layout(row,justify-center,full-height,align-center)
                     v-flex(xs2)
                     v-flex(xs7)
                         v-card-title
                             h3 タスク:
-                                span  {{item.taskTitle}}
+                                span  {{item.title}}
                         v-card-text
                             p 期限　：
-                                span {{item.expiration}}
+                                span {{item.expiration | setDatetime}}
                             span 作成日：
-                                span {{item.creation}}
+                                span {{item.createdAt | setDatetime}}
                     v-flex(xs3)
                         v-btn(color="success")
                             b 編集
@@ -35,39 +35,41 @@
 
 
 <script lang="ts">
-    function setDatetime(date:any){
-        return date.getFullYear()+"年"+date.getMonth()+"月"+1+date.getDay()+"日"
-    }
+
 
     export default {
         name: "TODOCard",
-        data() {
+        data(){
             return {
-                cards:[
-                    {
-                        id:1,
-                        taskTitle:"宿題",
-                        expiration: setDatetime(new Date()),
-                        creation: setDatetime(new Date()),
-                        done: false
-                    },
-                    {
-                        id:2,
-                        taskTitle:"買い物",
-                        expiration: setDatetime(new Date()),
-                        creation: setDatetime(new Date()),
-                        done: true
-                    },
-                ]
+                newTask:{}
             }
         },
+        filters: {
+            setDatetime:(date:any)=>{
+                date=new Date(date);
+                return date.getFullYear()+"年"+(date.getMonth()+1)+"月"+1+date.getDay()+"日"
+            },
+        },
+        async created(){
+            await this.$store.dispatch('getTodo');
+
+        },
+        computed:{
+            tasks(){
+                return this.$store.getters.getData;
+            },
+
+
+
+        },
+
         methods:{
-            checkDone:function (item) {
-                item.done=!item.done;
-
+            async checkDone(item){
+              item.done=!item.done;
+              await this.$store.dispatch('postTodo',item)
             }
-        }
 
+        }
 
     }
 </script>

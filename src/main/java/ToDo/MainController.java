@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import ToDo.MainModel;
 import ToDo.MainService;
 
+
+@CrossOrigin
 @RestController
 @RequestMapping("/api")
 public class MainController {
@@ -22,7 +24,7 @@ public class MainController {
     }
 
 
-    @GetMapping(path="{id}")
+    @GetMapping(path="/{id}")
     @ResponseBody
     public Optional<MainModel> getMemo(@PathVariable int id) {
         return mainService.findById(id);
@@ -35,15 +37,14 @@ public class MainController {
         return mainService.create(main);
     }
 
-
-    @PutMapping(path="{id}")
-    public MainModel PutMemo(@PathVariable Integer id,@RequestBody MainModel mainModel){
+    @PutMapping(path="/{id}")
+    public MainModel putMemo(@PathVariable Integer id,@RequestBody MainModel mainModel){
         mainModel.setId(id);
         return mainService.update(mainModel);
     }
-    @DeleteMapping(path = "{id}")
+    @DeleteMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void DeleteMemo(@PathVariable Integer id){
+    public void deleteMemo(@PathVariable Integer id){
         mainService.delete(id);
     }
 

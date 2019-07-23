@@ -49,7 +49,7 @@ const mutations={
   },
   getTodoById(state:State,setData:CardType){
     state.card=setData;
-    console.log(state.card);
+
 
   },
   postTodo(state:State,payload:any){

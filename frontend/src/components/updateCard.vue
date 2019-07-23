@@ -73,10 +73,13 @@
                         await this.$store.dispatch('getTodoById',this.$route.params.id)
                 },
                 async submit(){
+                        console.log(this.date);
                         this.card.title=this.title;
                         this.card.expiration=this.date;
                         await this.$store.dispatch('postTodo',this.card).then(()=>{
                                 console.log('Update the Card!')
+                        }).then(res=>{
+                                this.$router.push({ path: "/"})
                         });
                 }
         }

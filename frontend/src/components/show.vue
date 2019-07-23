@@ -56,7 +56,7 @@
         },
         computed:{
             tasks(){
-                return this.$store.getters.getData;
+                return this.$store.getters.getData.filter(item=>!item.done);
             },
 
 
@@ -64,8 +64,8 @@
 
         methods:{
             async checkDone(item){
-              item.done=!item.done;
-              await this.$store.dispatch('postTodo',item)
+                item.done=!item.done;
+                await this.$store.dispatch('postTodo',item)
             }
 
         }

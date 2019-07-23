@@ -1,7 +1,7 @@
 <template lang="pug">
     v-card
         v-card-title
-            h2 新しくカードを作成する
+            h2 新しいTodoを作成する
         v-divider
         v-card-text
             v-form(v-model="isValid",ref="form" lazy-validation)

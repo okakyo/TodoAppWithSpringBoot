@@ -15,10 +15,11 @@ export interface CardType{
 }
 
 interface State {
+  card:{}
   cards: CardType[],
   postCards:CardType[],
-  taskTitle: string,
-  expiration: Date |string ,
+  title: string,
+  expiration: Date |null ,
 }
 
 
@@ -37,15 +38,19 @@ const http=axios.create({
 )
 
 const state:State={
+  card: {},
   cards: [],
   postCards:[],
-  taskTitle:"",
-  expiration:""
 }
 
 const mutations={
   getTodo(state:State, newCards:[]) {
     state.cards = newCards;
+  },
+  getTodoById(state:State,setData:CardType){
+    state.card=setData;
+    console.log(state.card);
+
   },
   postTodo(state:State,payload:any){
     state.postCards=payload.cards
@@ -59,21 +64,35 @@ const getters={
   getData:(state:State)=>{
     return state.cards;
   },
-
+  getCard:(state:State)=>{
+    return state.card;
+  },
 }
 
 const actions={
   async getTodo(context:any){
-  let newCards=[];
-  await http.get('/api').then(res=>{
+    let newCards:[]=[];
+    await http.get('/api').then(res=>{
 
-      newCards=res.data;
+       newCards=res.data;
+      }).catch(e=>{
+       console.error(e);
+       console.log('データ取得に失敗しました。');
+    });
+      context.commit('getTodo',newCards)
+  },
+  async getTodoById(context:any,id:number) {
+    let setData:any;
+
+    await http.get(`/api/${id}`).then(res=>{
+      setData=res.data;
     }).catch(e=>{
       console.error(e);
-      console.log('データ取得に失敗しました。');
-  });
-    context.commit('getTodo',newCards)
+    });
+
+    context.commit('getTodoById',setData);
   },
+
   async postTodo(context:any,card:CardType){
     await http.post('/api',card).then(res=>{
       state.postCards=res.data;
@@ -108,8 +127,8 @@ const actions={
 }
 
 export default new Vuex.Store({
-    state,
-    mutations,
-    getters,
-    actions,
+    state:state,
+    mutations:mutations,
+    getters:getters,
+    actions:actions
 });

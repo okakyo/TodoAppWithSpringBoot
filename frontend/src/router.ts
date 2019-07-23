@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './views/Home.vue';
+import {componentFactory} from "vue-class-component/lib/component";
 
 Vue.use(Router);
 
@@ -13,6 +14,11 @@ export default new Router({
       name: 'home',
       component: Home,
     },
+    {path:"/detail/:id",
+    name:"detail",
+      component:()=>import ('./views/edit.vue')
+   },
+
     {
       path: '/about',
       name: 'about',
@@ -25,6 +31,11 @@ export default new Router({
       path:'/search',
       name:'search',
       component: ()=>import ('./views/Search.vue')
-    }
+    },
+    {
+      path:`/:id`,
+      name:"edit",
+
+    },
   ],
 });

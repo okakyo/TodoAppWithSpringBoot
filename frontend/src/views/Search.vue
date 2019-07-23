@@ -1,15 +1,15 @@
 <template lang="pug">
     .search
         search-card
-        TODOCard
+        show
 </template>
 
 <script lang="ts">
     import SearchCard from "@/components/SearchCard.vue";
-    import TODOCard from "@/components/todocard.vue";
+    import show from "@/components/show.vue";
     export default {
         name: "Search",
-        components: {TODOCard, SearchCard}
+        components: {show, SearchCard}
     }
 </script>
 

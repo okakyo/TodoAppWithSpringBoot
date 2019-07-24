@@ -9,7 +9,7 @@
                 v-flex(xs6)
                     v-form
                         v-text-field(v-model="title",
-                        prepend-icon="assignment"
+                        prepend-icon="search"
                         label="タスク",
                         name="title",
                         ref="title",
@@ -18,6 +18,8 @@
         div(v-if="tasks.length==0")
             h3(style="text-align:center;padding:20px;") カードが存在しません。
         div(v-else)
+            h2(style="padding:20px;") {{length}}件見つかりました
+            v-divider
             div(v-for="item in tasks", v-bind="item.id")
                 v-layout(row,justify-center,full-height,align-center)
                     v-flex(xs2)
@@ -48,22 +50,26 @@
         name: "SearchCard",
         data(){
             return {
-                newTask:{}
+                newTask:{},
+                length:0
             }
         },
         filters: {
             setDatetime:(date:any)=>{
                 date=new Date(date);
-                return date.getFullYear()+"年"+(date.getMonth()+1)+"月"+1+date.getDay()+"日"
+                return date.getFullYear()+"年"+(date.getMonth()+1)+"月"+date.getDate()+"日"
             },
         },
         async created(){
             await this.$store.dispatch('getTodo');
 
+
         },
         computed:{
             tasks(){
-                return this.$store.getters.getData.filter(item=>!item.done);
+                const response=this.$store.getters.getData.filter(item=>!item.done);
+                this.length=response.length;
+                return response;
             },
 
 
@@ -74,7 +80,6 @@
                 item.done=!item.done;
                 await this.$store.dispatch('postTodo',item)
             }
-
         }
 
     }

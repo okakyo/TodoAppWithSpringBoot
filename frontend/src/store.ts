@@ -24,9 +24,6 @@ interface State {
 
 
 
-function setDatetime(date:Date){
-  return date.getFullYear()+"年"+date.getMonth()+"月"+1+date.getDay()+"日"
-}
 
 const http=axios.create({
     baseURL: "http://localhost:5050",
@@ -62,6 +59,7 @@ const mutations={
 
 const getters={
   getData:(state:State)=>{
+
     return state.cards;
   },
   getCard:(state:State)=>{
@@ -96,7 +94,14 @@ const actions={
   async postTodo(context:any,card:CardType){
     await http.post('/api',card).then(res=>{
       state.postCards=res.data;
+      const findIndexNum=state.cards.findIndex(item=>item.id===res.data.id);
+      if(findIndexNum===-1){
       state.cards.push(res.data);
+      }
+      else{
+        state.cards[findIndexNum]=res.data;
+      }
+
     }).catch(e=>{
       console.error(e);
     console.log('データ送信時にエラーが発生しました。');
@@ -113,17 +118,19 @@ const actions={
     context.commit('putTodo');
 
   },
-  async deleteTodo(context:any,id:Number){
-    await http.delete(`/api/${id}`).then(res=>{
+  async deleteTodo(context:any,id:Number) {
+    await http.delete(`/api/${id}`).then(res => {
       console.log('データを削除します。');
       return res;
 
-    }).catch(e=>{
+    }).catch(e => {
       console.log(e);
       return e;
     })
+  },
+  async setSearchParams(){
+    return;
   }
-
 }
 
 export default new Vuex.Store({

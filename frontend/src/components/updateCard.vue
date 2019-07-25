@@ -43,7 +43,11 @@
 
         </template>
 
-<script>
+<script lang="ts">
+    function setDatetime(date:Date){
+                date=new Date(date);
+                return date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()
+        }
     export default {
         name: "updateCard",
         data(){
@@ -62,12 +66,10 @@
                 await this.getData();
                 this.card=await this.$store.getters.getCard;
                 this.title=this.card.title;
-                this.date=this.card.expiration;
+                this.date=setDatetime(this.card.expiration);
 
         },
-        computed:{
 
-        },
         methods:{
                 async getData(){
                         await this.$store.dispatch('getTodoById',this.$route.params.id)

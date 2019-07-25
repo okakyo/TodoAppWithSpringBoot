@@ -9,12 +9,16 @@
     - Backend ：Spring Boot(REST API)
 
 - ## 設計ポイント:
-    - データベース：
+    - ### データベース(Todoテーブル)：
         - id: Int型
         - title: String型 (max-length=50)
         - done: Boolean型 (default=false)
         - createdAt: Date型
         - updatedAt: Date型
-- ##　問題点：
-    - できたこと:
     
+    - ### 設計、構成について
+        - FrontEnd: 
+        - BackEnd: 
+- ## 環境構築方法:
+    - Dockerにて、構築
+    - 

@@ -16,7 +16,7 @@
                         required)
 
         div(v-if="tasks.length==0")
-            h3(style="text-align:center;padding:20px;") カードが存在しません。
+            h3(style="text-align:center;padding:20px;") カードが見つかりませんでした。
         div(v-else)
             h2(style="padding:20px;") {{length}}件見つかりました
             v-divider
@@ -50,7 +50,7 @@
         name: "SearchCard",
         data(){
             return {
-                newTask:{},
+                title:"",
                 length:0
             }
         },
@@ -62,12 +62,10 @@
         },
         async created(){
             await this.$store.dispatch('getTodo');
-
-
         },
         computed:{
             tasks(){
-                const response=this.$store.getters.getData.filter(item=>!item.done);
+                const response=this.$store.getters.getData.filter(item=>!item.done & item.title.includes(this.title));
                 this.length=response.length;
                 return response;
             },

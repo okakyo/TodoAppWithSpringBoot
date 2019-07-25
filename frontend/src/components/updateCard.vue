@@ -14,7 +14,7 @@
                             label="タスク",
                             name="title",
                             ref="title",
-
+                            :rules="nameRules"
                             required)
                         v-menu(ref="menu"
                             v-model="menu"
@@ -52,16 +52,19 @@
         name: "updateCard",
         data(){
                 return {
-                      card:{},
-                      title:"",
-                      menu:"",
-                      date:"",
+                        card:{},
+                        title:"",
+                        menu:"",
+                        date:"",
+                        nameRules: [
+                                v => !!v || '何か文字を入力してください',
+                                v => v.length <= 30 || '30文字以内で記述してください。'
+                                // エスケープ処理を追加
+                        ],
 
                 }
         },
-        filters: {
 
-            },
         async created(){
                 await this.getData();
                 this.card=await this.$store.getters.getCard;
@@ -75,14 +78,16 @@
                         await this.$store.dispatch('getTodoById',this.$route.params.id)
                 },
                 async submit(){
-                        console.log(this.date);
-                        this.card.title=this.title;
-                        this.card.expiration=this.date;
-                        await this.$store.dispatch('postTodo',this.card).then(()=>{
-                                console.log('Update the Card!')
-                        }).then(res=>{
+                        if (this.$refs.form.validate()) {
+                            console.log(this.date);
+                            this.card.title=this.title;
+                            this.card.expiration=this.date;
+                            await this.$store.dispatch('postTodo',this.card).then(()=>{
+                                    console.log('Update the Card!')
+                            }).then(res=>{
                                 this.$router.push({ path: "/"})
-                        });
+                            });
+                    }
                 }
         }
     }

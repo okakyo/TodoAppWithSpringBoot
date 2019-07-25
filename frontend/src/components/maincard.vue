@@ -4,7 +4,7 @@
             h2 新しいTodoを作成する
         v-divider
         v-card-text
-            v-form(v-model="isValid",ref="form" lazy-validation)
+            v-form(v-model="isValid",ref="form" )
                 v-layout(row,justify-center,full-height,align-center)
                     v-flex(xs2)
                     v-flex(xs6)
@@ -16,7 +16,7 @@
                                     ref="title",
                                     required)
                             v-menu(ref="menu"
-
+                                    :rules="expirationRules"
                                     :close-on-content-click="false"
                                     :nudge-right="40"
                                     :return-value.sync="date"
@@ -24,7 +24,8 @@
                                     transition="scale-transition"
                                     offset-y
                                     full-width
-                                    min-width="290px")
+                                    min-width="290px"
+                                    required)
                                     template(v-slot:activator="{ on }")
                                             v-text-field( v-model="date"
                                                     label="期限"
@@ -38,7 +39,7 @@
                                             v-btn(flat color="primary" @click="$refs.menu.save(date)") OK
                     v-flex(xs1)
                     v-flex(xs3)
-                            v-btn(color="warning"  @click="submit")
+                            v-btn(color="warning"  @click="submit" )
                                     span 提出
         </template>
 
@@ -47,7 +48,7 @@
                 name: "MainCard",
                 data(){return {
                         date:"",
-                        isValid: false,
+
                         title: "",
                         menu:"",
                         nameRules: [
@@ -55,21 +56,26 @@
                                 v => v.length <= 30 || '30文字以内で記述してください。'
                                 // エスケープ処理を追加
                         ],
+                        expirationRules:[
+                                v=>!!v || '日時を設定ください'
+                        ]
+
                 }},
 
-                methods:{
-                        async submit(){
-                                        await this.$store.dispatch('postTodo',{
-                                                title:this.title,
-                                                expiration:this.date,
-                                        }).then(()=>{
+                methods: {
+                        async submit() {
+                                if (this.$refs.form.validate()) {
+
+                                        await this.$store.dispatch('postTodo', {
+                                                title: this.title,
+                                                expiration: this.date,
+                                        }).then(() => {
                                                 console.log('Add an New Card!')
                                         });
                                 }
-                        }
+                        },
 
-
-
+                }
     }
 </script>
 

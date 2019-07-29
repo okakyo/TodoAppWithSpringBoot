@@ -59,9 +59,10 @@
 
                 methods:{
                         async submit(){
-                                        await this.$store.dispatch('postTodo',{
-                                                title:this.title,
-                                                expiration:this.date,
+
+                                await self.$store.dispatch('postTodo',{
+                                                title:self.title,
+                                                expiration:self.date,
                                         }).then(()=>{
                                                 console.log('Add an New Card!')
                                         });

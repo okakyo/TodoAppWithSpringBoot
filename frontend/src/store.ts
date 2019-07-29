@@ -38,6 +38,8 @@ const state:State={
   card: {},
   cards: [],
   postCards:[],
+  title:"",
+  expiration:null
 }
 
 const mutations={
@@ -51,8 +53,6 @@ const mutations={
   },
   postTodo(state:State,payload:any){
     state.postCards=payload.cards
-  },
-  putTodo(state:State,payload:any){
   },
   deleteTodo(){},
 }
@@ -108,16 +108,7 @@ const actions={
     });
     context.commit('getTodo',state.cards);
   },
-  async putTodo(context:any,id:Number,card:CardType){
-    await http.put(`/api/${id}`,card).then(res=>{
-      console.log(`ID：${id}の情報を更新しました。`)
-    }).catch(e=>{
-      console.error(e);
-    }
-    )
-    context.commit('putTodo');
 
-  },
   async deleteTodo(context:any,id:Number) {
     await http.delete(`/api/${id}`).then(res => {
       console.log('データを削除します。');
@@ -134,8 +125,8 @@ const actions={
 }
 
 export default new Vuex.Store({
-    state:state,
-    mutations:mutations,
-    getters:getters,
-    actions:actions
+    state,
+    mutations,
+    getters,
+    actions
 });

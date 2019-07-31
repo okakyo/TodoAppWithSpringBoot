@@ -67,8 +67,7 @@
         computed:{
             tasks():any{
                 let self:any=this;
-                const response=self.$store.getters.getData.filter((item:any)=>(item.title.includes(self.title)))
-                                                          .filter((item:any)=>{!item.done});
+                const response=self.$store.getters.getData.filter((item:any)=>(!item.done && item.title.includes(self.title)));
                 self.length=response.length;
                 return response;
             },

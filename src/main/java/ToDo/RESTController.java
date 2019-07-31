@@ -5,8 +5,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import ToDo.MainModel;
-import ToDo.MainService;
 
 
 @CrossOrigin
@@ -38,9 +36,9 @@ public class MainController {
     }
 
     @PutMapping(path="/{id}")
-    public MainModel putMemo(@PathVariable Integer id,@RequestBody MainModel mainModel){
-        mainModel.setId(id);
-        return mainService.update(mainModel);
+    public MainModel putMemo(@PathVariable Integer id, @RequestBody MainModel RESTModel){
+        RESTModel.setId(id);
+        return mainService.update(RESTModel);
     }
     @DeleteMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)

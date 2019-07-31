@@ -3,32 +3,29 @@ package ToDo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ToDo.MainRepository;
-import ToDo.MainModel;
-
 import java.util.List;
 import java.util.Optional;
 
 
 @Service
-public class MainService {
+public class RESTService {
     @Autowired
-    MainRepository mainRepository;
+    RESTRepository mainRepository;
 
 
-    public List<MainModel>findAll(){
+    public List<RESTModel>findAll(){
         return mainRepository.findAll();
     }
-    public Optional<MainModel> findById(Integer id){
+    public Optional<RESTModel> findById(Integer id){
         return mainRepository.findById(id);
     }
-    public void find(MainModel main) { return ;}
+    public void find(RESTModel main) { return ;}
 
-    public MainModel create(MainModel main){
+    public RESTModel create(RESTModel main){
         return mainRepository.save(main);
     }
 
-    public MainModel update(MainModel main){
+    public RESTModel update(RESTModel main){
         return mainRepository.save(main);
     }
 

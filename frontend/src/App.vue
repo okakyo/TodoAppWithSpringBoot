@@ -7,12 +7,11 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
 import Header from './components/header'
 export default {
   name: 'App',
   components: {
-    HelloWorld,Header
+    Header
   },
   data () {
     return {

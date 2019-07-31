@@ -62,6 +62,7 @@
 
                 }},
 
+<<<<<<< HEAD
                 methods: {
                         async submit() {
                                 if (this.$refs.form.validate()) {
@@ -70,6 +71,15 @@
                                                 title: this.title,
                                                 expiration: this.date,
                                         }).then(() => {
+=======
+                methods:{
+                        async submit(){
+
+                                await self.$store.dispatch('postTodo',{
+                                                title:self.title,
+                                                expiration:self.date,
+                                        }).then(()=>{
+>>>>>>> develop
                                                 console.log('Add an New Card!')
                                         });
                                 }

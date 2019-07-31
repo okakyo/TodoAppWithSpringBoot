@@ -66,18 +66,21 @@
         },
 
         async created(){
-                await this.getData();
-                this.card=await this.$store.getters.getCard;
-                this.title=this.card.title;
-                this.date=setDatetime(this.card.expiration);
+                let self:any=this;
+                await self.getData();
+                self.card=await self.$store.getters.getCard;
+                self.title=self.card.title;
+                self.date=setDatetime(self.card.expiration);
 
         },
 
         methods:{
                 async getData(){
-                        await this.$store.dispatch('getTodoById',this.$route.params.id)
+                        let self:any=this;
+                        await self.$store.dispatch('getTodoById',self.$route.params.id)
                 },
                 async submit(){
+<<<<<<< HEAD
                         if (this.$refs.form.validate()) {
                             console.log(this.date);
                             this.card.title=this.title;
@@ -88,6 +91,17 @@
                                 this.$router.push({ path: "/"})
                             });
                     }
+=======
+                        let self:any=this;
+                        console.log(self.date);
+                        self.card.title=self.title;
+                        self.card.expiration=self.date;
+                        await self.$store.dispatch('postTodo',self.card).then(()=>{
+                                console.log('Update the Card!')
+                        }).then((res:any)=>{
+                                self.$router.push({ path: "/"})
+                        });
+>>>>>>> develop
                 }
         }
     }

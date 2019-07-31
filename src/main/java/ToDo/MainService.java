@@ -3,9 +3,6 @@ package ToDo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ToDo.MainRepository;
-import ToDo.MainModel;
-
 import java.util.List;
 import java.util.Optional;
 

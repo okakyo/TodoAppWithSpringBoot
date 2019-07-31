@@ -37,5 +37,9 @@ export default new Router({
       name:"edit",
 
     },
+      {
+          path: '*',
+          redirect:'/'
+      }
   ],
 });

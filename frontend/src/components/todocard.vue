@@ -51,21 +51,24 @@
             },
         },
         async created(){
-            await this.$store.dispatch('getTodo');
+            let self:any=this
+            await self.$store.dispatch('getTodo');
 
         },
         computed:{
             tasks(){
-                return this.$store.getters.getData;
+                let self:any=this;
+                return self.$store.getters.getData;
             },
 
 
         },
 
         methods:{
-            async checkDone(item){
+            async checkDone(item:any){
+              let self:any=this;
               item.done=!item.done;
-              await this.$store.dispatch('postTodo',item)
+              await self.$store.dispatch('postTodo',item)
             }
 
         }

@@ -61,12 +61,14 @@
             },
         },
         async created(){
-            await this.$store.dispatch('getTodo');
+            let self:any=this;
+            await self.$store.dispatch('getTodo');
         },
         computed:{
-            tasks(){
-                const response=this.$store.getters.getData.filter(item=>!item.done & item.title.includes(this.title));
-                this.length=response.length;
+            tasks():any{
+                let self:any=this;
+                const response=self.$store.getters.getData.filter((item:any)=>(!item.done && item.title.includes(self.title)));
+                self.length=response.length;
                 return response;
             },
 
@@ -74,9 +76,10 @@
         },
 
         methods:{
-            async checkDone(item){
+            async checkDone(item:any){
+                let self:any=this;
                 item.done=!item.done;
-                await this.$store.dispatch('postTodo',item)
+                await self.$store.dispatch('postTodo',item)
             }
         }
 

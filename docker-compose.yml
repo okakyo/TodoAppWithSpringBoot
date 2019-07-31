@@ -1,0 +1,42 @@
+version: '3'
+services:
+  db:
+      image: mysql:5.7
+      ports:
+        - 3306:3306
+      restart: always
+      volumes:
+        - ./db/mysql_init:/docker-entrypoint-initdb.d
+        - ./db/mysql_data:/var/lib/mysql
+      environment:
+        MYSQL_DATABASE: todo
+        MYSQL_ROOT_PASSWORD: password
+        MYSQL_USER: root
+        MUSQL_PASSWORD: password
+  backend:
+      container_name: "backend_of_springboot"
+      build: .
+      image: watari/boot:0.1.0
+      depends_on:
+        - db
+      ports:
+        - 5050:5050
+      volumes:
+        - .:/app
+      environment:
+        JAR_TARGET: boot-get-started-0.0.1-SNAPSHOT.jar
+
+  frontend:
+      container_name: "frontend_of_vue"
+      build:
+        context: './frontend'
+      ports:
+        - 8081:8081
+      privileged: true
+      volumes:
+        - ./server:/app
+      tty: true
+      stdin_open: true
+      command: /bin/sh
+
+

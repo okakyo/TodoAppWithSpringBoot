@@ -8,24 +8,24 @@ import java.util.Optional;
 
 
 @Service
-public class RESTService {
+public class MainService {
     @Autowired
-    RESTRepository mainRepository;
+    MainRepository mainRepository;
 
 
-    public List<RESTModel>findAll(){
+    public List<MainModel>findAll(){
         return mainRepository.findAll();
     }
-    public Optional<RESTModel> findById(Integer id){
+    public Optional<MainModel> findById(Integer id){
         return mainRepository.findById(id);
     }
-    public void find(RESTModel main) { return ;}
+    public void find(MainModel main) { return ;}
 
-    public RESTModel create(RESTModel main){
+    public MainModel create(MainModel main){
         return mainRepository.save(main);
     }
 
-    public RESTModel update(RESTModel main){
+    public MainModel update(MainModel main){
         return mainRepository.save(main);
     }
 

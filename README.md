@@ -44,9 +44,9 @@
                     - application  
             
 - ## 環境構築方法
-    - `docker-compose build` で環境構築が開始されます。
+    - `$docker-compose build` で環境構築が開始されます。
 - ## 起動方法:
-    - `sh serve.sh` でサーバーを実行することができます。
+    - `$sh serve.sh` でサーバーを実行することができます。
 
 - ## 課題点
 -  SpringBootをgradle でコンパイルすると,起動時に次のエラーが発生する。

@@ -3,4 +3,7 @@ FROM openjdk:latest
 RUN mkdir /app
 WORKDIR /app
 COPY . ./
-ENTRYPOINT ["sh", "./gradlew", "bootRun"]
+
+RUN ./gradlew --full-stacktrace -q build
+
+CMD ./gradlew bootRun

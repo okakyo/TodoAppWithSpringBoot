@@ -32,7 +32,7 @@
                                 prepend-icon="event"
                                 readonly
                                 v-on="on")
-                            v-date-picker(v-model="date",no-title,scrollable,locale="ja",:day-format="date => new Date(date).getDate()")
+                            v-date-picker(v-model="date",no-title,scrollable,locale="ja", :day-format="new Date(date).getDate()")
                                 v-spacer
                                 v-btn(flat color="primary" @click="menu = false") Cancel
                                 v-btn(flat color="primary" @click="$refs.menu.save(date)") OK
@@ -52,13 +52,13 @@
         name: "updateCard",
         data(){
                 return {
-                        card:{},
-                        title:"",
-                        menu:"",
-                        date:"",
+                        card: {},
+                        title: "",
+                        menu: "",
+                        date: "",
                         nameRules: [
-                                v => !!v || '何か文字を入力してください',
-                                v => v.length <= 30 || '30文字以内で記述してください。'
+                                (v:string | null) => !!v || '何か文字を入力してください',
+                                (v:string)=> v.length <= 30 || '30文字以内で記述してください。'
                                 // エスケープ処理を追加
                         ],
 
@@ -80,18 +80,7 @@
                         await self.$store.dispatch('getTodoById',self.$route.params.id)
                 },
                 async submit(){
-<<<<<<< HEAD
-                        if (this.$refs.form.validate()) {
-                            console.log(this.date);
-                            this.card.title=this.title;
-                            this.card.expiration=this.date;
-                            await this.$store.dispatch('postTodo',this.card).then(()=>{
-                                    console.log('Update the Card!')
-                            }).then(res=>{
-                                this.$router.push({ path: "/"})
-                            });
-                    }
-=======
+
                         let self:any=this;
                         console.log(self.date);
                         self.card.title=self.title;
@@ -101,7 +90,6 @@
                         }).then((res:any)=>{
                                 self.$router.push({ path: "/"})
                         });
->>>>>>> develop
                 }
         }
     }

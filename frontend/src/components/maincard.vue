@@ -33,7 +33,7 @@
                                                     readonly
                                                     ref="date"
                                                     v-on="on")
-                                    v-date-picker(v-model="date",no-title,scrollable,locale="ja",:day-format="date => new Date(date).getDate()")
+                                    v-date-picker(v-model="date",no-title,scrollable,locale="ja",:day-format=" new Date(date).getDate()")
                                             v-spacer
                                             v-btn(flat color="primary" @click="menu = false") Cancel
                                             v-btn(flat color="primary" @click="$refs.menu.save(date)") OK
@@ -62,16 +62,7 @@
 
                 }},
 
-<<<<<<< HEAD
-                methods: {
-                        async submit() {
-                                if (this.$refs.form.validate()) {
 
-                                        await this.$store.dispatch('postTodo', {
-                                                title: this.title,
-                                                expiration: this.date,
-                                        }).then(() => {
-=======
                 methods:{
                         async submit(){
 
@@ -79,13 +70,11 @@
                                                 title:self.title,
                                                 expiration:self.date,
                                         }).then(()=>{
->>>>>>> develop
                                                 console.log('Add an New Card!')
                                         });
                                 }
                         },
 
-                }
     }
 </script>
 

@@ -25,6 +25,7 @@ services:
         - .:/app
       environment:
         JAR_TARGET: boot-get-started-0.0.1-SNAPSHOT.jar
+      command: /bin/sh
 
   frontend:
       container_name: "frontend_of_vue"
@@ -34,7 +35,7 @@ services:
         - 8081:8081
       privileged: true
       volumes:
-        - ./server:/app
+        - ./frontend
       tty: true
       stdin_open: true
       command: /bin/sh

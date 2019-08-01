@@ -49,8 +49,6 @@ services:
       volumes:
         - ./frontend
       tty: true
-      expose:
-        - 8090
       stdin_open: true
       command: /bin/sh
 

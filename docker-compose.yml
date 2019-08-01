@@ -13,20 +13,24 @@ services:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_USER: root
       MUSQL_PASSWORD: password
-    backend:
-      container_name: "backend_of_springboot"
-      build:
-        context: "./"
-        dockerfile: Dockerfile
-      image: watari/boot:0.1.0
-      depends_on:
-        - db
-      ports:
-        - 5050:5050
-      volumes:
-        - /data/spring-boot-app
-      environment:
-        JAR_TARGET: boot-get-started-0.0.1-SNAPSHOT.jar
+
+
+  backend:
+    container_name: "backend_of_springboot"
+    build:
+      context: "./"
+      dockerfile: Dockerfile
+    image: watari/boot:0.1.0
+    depends_on:
+      - db
+    ports:
+      - 5050:5050
+    volumes:
+      - /data/spring-boot-app
+    environment:
+      JAR_TARGET: boot-get-started-0.0.1-SNAPSHOT.jar
+
+
   frontend:
     container_name: "frontend_of_vue"
     build:
@@ -39,6 +43,8 @@ services:
     tty: true
     stdin_open: true
     command: /bin/sh
+
+
   nginx:
     build:
       context: "./nginx"

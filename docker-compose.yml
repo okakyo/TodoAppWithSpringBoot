@@ -1,29 +1,19 @@
 version: '3'
 services:
-  nginx:
-    build:
-      context: "./nginx"
-      dockerfile: Dockerfile
-    ports:
-      - '80:8080'
-    volumes:
-      - ./out/production/resources/static:/var/www/html
-      - ./nginx/server.conf:/etc/nginx/nginx.conf
-
   db:
-      image: mysql:5.7
-      ports:
-        - 3306:3306
-      restart: always
-      volumes:
-        - ./db/mysql_init:/docker-entrypoint-initdb.d
-        - ./db/mysql_data:/var/lib/mysql
-      environment:
-        MYSQL_DATABASE: todo
-        MYSQL_ROOT_PASSWORD: password
-        MYSQL_USER: root
-        MUSQL_PASSWORD: password
-  backend:
+    image: mysql:5.7
+    ports:
+      - 3306:3306
+    restart: always
+    volumes:
+      - ./db/mysql_init:/docker-entrypoint-initdb.d
+      - ./db/mysql_data:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: todo
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: root
+      MUSQL_PASSWORD: password
+    backend:
       container_name: "backend_of_springboot"
       build:
         context: "./"
@@ -37,20 +27,32 @@ services:
         - /data/spring-boot-app
       environment:
         JAR_TARGET: boot-get-started-0.0.1-SNAPSHOT.jar
-
-
   frontend:
-      container_name: "frontend_of_vue"
-      build:
-        context: './frontend'
-      ports:
-        - 8080:8080
-      privileged: true
-      volumes:
-        - ./frontend
-      tty: true
-      stdin_open: true
-      command: /bin/sh
+    container_name: "frontend_of_vue"
+    build:
+      context: './frontend'
+    ports:
+      - 8080:8080
+    privileged: true
+    volumes:
+      - ./frontend
+    tty: true
+    stdin_open: true
+    command: /bin/sh
+  nginx:
+    build:
+      context: "./nginx"
+      dockerfile: Dockerfile
+    ports:
+      - '80:8080'
+    volumes:
+      - ./out/production/resources/static:/var/www/html
+      - ./nginx/server.conf:/etc/nginx/nginx.conf
+
+
+
+
+
 
 
 

@@ -17,13 +17,14 @@ services:
       container_name: "backend_of_springboot"
       build:
         context: "./"
+        dockerfile: Dockerfile
       image: watari/boot:0.1.0
       depends_on:
         - db
       ports:
         - 5050:5050
       volumes:
-        - .:/app
+        - /data/spring-boot-app
       environment:
         JAR_TARGET: boot-get-started-0.0.1-SNAPSHOT.jar
 

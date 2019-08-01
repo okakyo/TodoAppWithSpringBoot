@@ -37,4 +37,4 @@
     - `sh serve.sh` でサーバーを実行することができます。
 
 - ## 課題点
-    -
+    - Vue.js を　`npm run build` で

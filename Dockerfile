@@ -4,6 +4,6 @@ RUN mkdir /app
 WORKDIR /app
 COPY . ./
 
-RUN ./gradlew --full-stacktrace -q build
+RUN sudo ./gradlew --full-stacktrace -q build
 
-CMD ./gradlew bootRun
+CMD sudo ./gradlew bootRun

@@ -12,7 +12,7 @@ VOLUME /tmp
 RUN mkdir /app
 WORKDIR /app
 
- RUN /app/gradlew build
+RUN ./gradlew build
 RUN mv /app/build/libs/*.jar /app/app.jar
 
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app/app.jar"]

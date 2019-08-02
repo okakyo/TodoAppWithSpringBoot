@@ -12,6 +12,8 @@ VOLUME /tmp
 RUN mkdir /app
 WORKDIR /app
 
+COPY . ./
+
 RUN ./gradlew build
 RUN mv /app/build/libs/*.jar /app/app.jar
 

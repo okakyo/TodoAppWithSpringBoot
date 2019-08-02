@@ -28,7 +28,6 @@ services:
       MUSQL_PASSWORD: password
 
 
-
   backend:
     container_name: "backend_of_springboot"
     build:

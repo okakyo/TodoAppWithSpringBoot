@@ -23,9 +23,9 @@ services:
       - ./db/mysql_data:/var/lib/mysql
     environment:
       MYSQL_DATABASE: todo
-      MYSQL_ROOT_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: OkaKyo1997
       MYSQL_USER: root
-      MUSQL_PASSWORD: password
+      MUSQL_PASSWORD: OkaKyo1997
 
 
   backend:

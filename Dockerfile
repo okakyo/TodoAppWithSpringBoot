@@ -14,7 +14,7 @@ WORKDIR /app
 
 COPY . ./
 
-RUN ./gradlew build
+RUN sudo ./gradlew build
 RUN mv /app/build/libs/*.jar /app/app.jar
 
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app/app.jar"]

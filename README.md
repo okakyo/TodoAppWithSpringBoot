@@ -1,12 +1,14 @@
-# Todo アプリ（SpringBoot）
+# Todo アプリ　
 
 - ## 使用した技術
-    - DB: MySQL
-    - Frontend: 
+    - DB: 
+        - MySQL (port: 3306)
+    - Frontend: (port:8080) 
         - Vue.js(TypeScript)
         - Vuex
         - Vuetify
-    - Backend ：Spring Boot(REST API)
+    - Backend ： (port: 5050)  
+        - Spring Boot(REST API) 
 
 - ## 設計ポイント:
     - ### データベース(Todoテーブル)：
@@ -59,8 +61,10 @@
    
 - Docker を使う場合での環境構築（未完成）
     1. ``git clone https://github.com/okakyo/TodoAppWithSpringBoot.git `` をターミナルじょうで実行
-    2. `cd TodoAppWithSpringBoot.` にてディレクトリへ移動したのち、`docker-compose build`　を実行
-    3. ビルドが完了したら、` docker-compose up -d` をしたのち、`sh server.sh`　で フロントエンドを実行する。
+    2. `cd TodoAppWithSpringBoot` にてディレクトリへ移動したのち、`docker-compose build`　を実行
+    3. ビルドが完了したら、` docker-compose up -d` をしたのち、`sh server.sh`　で フロントエンドのコンテナに入り、
+       `npm run serve`を実行する。
+       
  ## 課題点
 -  SpringBoot を gradle でコンパイルすると,起動時に次のエラーが発生する点がまだ解決していない。
 

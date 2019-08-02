@@ -10,8 +10,7 @@ COPY . ./
 RUN apk update && \
     npm install -g npm && \
     npm install -g npm @vue/cli &&\
-    npm install
-
+    npm install && npm audit fix
 
 
 CMD ["npm","run","serve"]

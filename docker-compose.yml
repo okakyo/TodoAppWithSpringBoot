@@ -45,17 +45,6 @@ services:
     command: /bin/sh
 
 
-  nginx:
-    build:
-      context: "./nginx"
-      dockerfile: Dockerfile
-    ports:
-      - '80:8080'
-    volumes:
-      - ./out/production/resources/static:/var/www/html
-      - ./nginx/server.conf:/etc/nginx/nginx.conf
-
-
 
 
 

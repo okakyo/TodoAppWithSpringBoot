@@ -11,6 +11,7 @@
 - ## 設計ポイント:
     - ### データベース(Todoテーブル)：
         - id: Int型
+        - expiration : Date型
         - title: String型 (max-length=50)
         - done: Boolean型 (default=false)
         - createdAt: Date型
@@ -43,13 +44,25 @@
                  - resources
                     - application  
             
-- ## 環境構築方法
-    - `$docker-compose build` で環境構築が開始されます。
-- ## 起動方法:
-    - `$sh serve.sh` でサーバーを実行することができます。
-
-- ## 課題点
--  SpringBootをgradle でコンパイルすると,起動時に次のエラーが発生する。
+## 動作確認
+- Docker　を使わない場合での環境構築
+   1. あらかじめ、PC に以下のものをDLしておく。
+   - git
+   - nodejs
+   - intelliJ
+   2. `git clone https://github.com/okakyo/TodoAppWithSpringBoot.git` でDLしたのち,
+      このファイルをintelliJ で起動
+   3. intelliJ にて、このコードを実行する。
+   4. frontend のディレクトリへ移動。
+   5. ターミナル上で、`npm install && npm install -g vue@cli` を実行
+   6. ターミナル上で、`npm run serve`　を実行する.
+   
+- Docker を使う場合での環境構築（未完成）
+    1. ``git clone https://github.com/okakyo/TodoAppWithSpringBoot.git `` をターミナルじょうで実行
+    2. `cd TodoAppWithSpringBoot.` にてディレクトリへ移動したのち、`docker-compose build`　を実行
+    3. ビルドが完了したら、` docker-compose up -d` をしたのち、`sh server.sh`　で フロントエンドを実行する。
+ ## 課題点
+-  SpringBoot を gradle でコンパイルすると,起動時に次のエラーが発生する点がまだ解決していない。
 
 
 ```bash
@@ -76,6 +89,5 @@ BUILD FAILED in 1s
 
 ```
 
-- `npm run build` してコンパイルされたindex.htmlを、SpringBootのサーバー で表示できなかった。
-
+- コンポーネント設計に基づいて、フロントエンドの画面を形成するファイルをまとめるような設計をすればよかった。
 

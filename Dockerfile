@@ -15,4 +15,3 @@ WORKDIR /app
 ENV JAVA_OPTS=""
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app/app.jar"]
 
-RUN gradlew build

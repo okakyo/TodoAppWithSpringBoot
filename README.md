@@ -3,9 +3,13 @@
 - ## 使用した技術
     - DB: 
         - MySQL (port: 3306)
+            - username: root
+            - password: OkaKyo1997
+            
     - Frontend: (port:8080) 
         - Vue.js(TypeScript)
         - Vuex
+        
         - Vuetify
     - Backend ： (port: 5050)  
         - Spring Boot(REST API) 
@@ -65,7 +69,9 @@
     3. ビルドが完了したら、` docker-compose up -d` をしたのち、`sh server.sh`　で フロントエンドのコンテナに入り、
        `npm run serve`を実行する。
        
- ## 課題点
+ ## 課題点、反省点
+- Docker　によるローカル環境の構築がうまくいかなかった.
+
 -  SpringBoot を gradle でコンパイルすると,起動時に次のエラーが発生する点がまだ解決していない。
 
 
@@ -94,4 +100,3 @@ BUILD FAILED in 1s
 ```
 
 - コンポーネント設計に基づいて、フロントエンドの画面を形成するファイルをまとめるような設計をすればよかった。
-

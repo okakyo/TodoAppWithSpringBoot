@@ -11,7 +11,7 @@ services:
       - ./frontend
     tty: true
     stdin_open: true
-    command: /bin/sh
+    command: /bin/sh -c npm run serve
 
   db:
     image: mysql:5.7

@@ -14,3 +14,4 @@ RUN apk update && \
 
 
 
+CMD ["/bin/sh/","-c","npm","run","serve"]

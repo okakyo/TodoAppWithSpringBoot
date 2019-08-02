@@ -9,7 +9,6 @@
     - Frontend: (port:8080) 
         - Vue.js(TypeScript)
         - Vuex
-        
         - Vuetify
     - Backend ： (port: 5050)  
         - Spring Boot(REST API) 
@@ -52,19 +51,19 @@
             
 ## 動作確認
 - Docker　を使わない場合での環境構築
-   1. あらかじめ、PC に以下のものをDLしておく。
-   - git
-   - nodejs
-   - intelliJ
-   2. `git clone https://github.com/okakyo/TodoAppWithSpringBoot.git` でDLしたのち,
+   -  あらかじめ、PC に以下のものをDLしておく。
+     - git
+    - nodejs
+    - intelliJ
+   - `git clone https://github.com/okakyo/TodoAppWithSpringBoot.git` でDLしたのち,
       このファイルをintelliJ で起動
-   3. intelliJ にて、このコードを実行する。
-   4. frontend のディレクトリへ移動。
-   5. ターミナル上で、`npm install && npm install -g vue@cli` を実行
-   6. ターミナル上で、`npm run serve`　を実行する.
+   -  intelliJ にて、SpringBootを起動させる。
+   -  起動させたまま、frontend のディレクトリへ移動。
+   -  ターミナル上で、`npm install && npm install -g vue@cli` を実行
+   -  ターミナル上で、`npm run serve`　を実行する.
    
 - Docker を使う場合での環境構築（未完成）
-    1. ``git clone https://github.com/okakyo/TodoAppWithSpringBoot.git `` をターミナルじょうで実行
+    1. ``git clone https://github.com/okakyo/TodoAppWithSpringBoot.git `` をターミナル上で実行
     2. `cd TodoAppWithSpringBoot` にてディレクトリへ移動したのち、`docker-compose build`　を実行
     3. ビルドが完了したら、` docker-compose up -d` をしたのち、`sh server.sh`　で フロントエンドのコンテナに入り、
        `npm run serve`を実行する。

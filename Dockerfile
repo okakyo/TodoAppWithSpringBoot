@@ -1,18 +1,6 @@
-# use alpine as base image
-FROM ubuntu:16.04
-
-RUN apt-get update
-RUN apt-get -y install openjdk-8-jdk
-ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
-
-# recommended by spring boot
+FROM openjdk:jdk-alpine
 VOLUME /tmp
-
-# create directory for application
 RUN mkdir /app
 WORKDIR /app
-
 ENV JAVA_OPTS=""
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app/app.jar"]
-
-CMD ["gradle","build"]
+ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar build/libs/hello-world-0.1.0.jar" ]

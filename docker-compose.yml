@@ -1,5 +1,18 @@
 version: '3'
 services:
+  frontend:
+    container_name: "frontend_of_vue"
+    build:
+      context: './frontend'
+    ports:
+      - 8080:8080
+    privileged: true
+    volumes:
+      - ./frontend
+    tty: true
+    stdin_open: true
+    command: /bin/sh
+
   db:
     image: mysql:5.7
     ports:
@@ -14,18 +27,7 @@ services:
       MYSQL_USER: root
       MUSQL_PASSWORD: password
 
-  frontend:
-    container_name: "frontend_of_vue"
-    build:
-      context: './frontend'
-    ports:
-      - 8080:8080
-    privileged: true
-    volumes:
-      - ./frontend
-    tty: true
-    stdin_open: true
-    command: /bin/sh
+
 
   backend:
     container_name: "backend_of_springboot"

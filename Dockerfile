@@ -12,10 +12,6 @@ VOLUME /tmp
 RUN mkdir /app
 WORKDIR /app
 
-COPY . ./
-
-RUN mv /app/build/libs/*.jar /app/app.jar
-
 ENV JAVA_OPTS=""
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app/app.jar"]
 
